@@ -25,8 +25,9 @@ class Application(Frame):
         self.values = self.entry.get()
         self.ID = self.get_ID(self.values)
         self.data = get_pricedata(self.ID)
-        self.dynamiclabel = displaylabel(self.data)
-        return self
+        self.dynamiclabel = displaylabel(self,self.data)
+        self.dynamiclabel.pack()
+        return self.data
         
     def get_ID(self,value):
         with open('tradeableitems.txt','r') as file:
@@ -49,12 +50,12 @@ class images(Frame):
         self.canvas.create_image(1000,100,anchor = E ,image = self.img)
 
 class displaylabel(Frame):
-    def __init__(self,master):
-        Frame.__init__(master)
+    def __init__(self,master,display_data):
+        Frame.__init__(self)
         self.master = master
         
-        self.text = f"{self.data[1]} is currently worth {self.data[0]} GP"
-        self.dynamiclabel = Label(self.master,padx=10,pady=10,bg="black",fg = "Yellow",text = self.text)
+        self.text = f"{display_data[1]} is currently worth {display_data[0]} GP"
+        self.dynamiclabel = Label(self,padx=10,pady=10,bg="black",fg = "Yellow",text = self.text,font = tkFont.Font(family = 'times',size = 35))
         self.dynamiclabel.pack(side = "top")        
         
 if __name__ == "__main__":
