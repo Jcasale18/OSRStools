@@ -24,4 +24,3 @@ def get_pricedata(_id):
     name = str(soup('title')).replace('[<title>','').replace('</title>]','').replace(' - Grand Exchange - Old School RuneScape','')
     
     return price,name
-get_pricedata('12817')
